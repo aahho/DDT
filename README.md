@@ -1,2 +1,1 @@
-# DDT
-duchducktech
+# Duck Duck Tech
