@@ -14,7 +14,7 @@ class DDTException(Exception):
         rv['data'] = []
         rv['code'] = self.status_code
         rv['notification'] = {
-            'seCode' : 'DDT_'+str(self.status_code),
+            'feedCode' : 'DDT_'+str(self.status_code),
             'message' : self.message,
             'hint' : self.hint,
             'type' : 'error'
