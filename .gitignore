@@ -1,6 +1,5 @@
 xenv.py
 env.py
-*.pyc
 !migrations/env.py
 *.pyc
 *.swp
