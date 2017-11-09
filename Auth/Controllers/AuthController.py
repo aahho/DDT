@@ -97,7 +97,7 @@ def google_login(token):
  	#return social.redirect('user')
 
 def facebook_login(token):
-	return
+	# return
 	# GoogleAuthentication.authenticate_token(token)
 	user_info = FacebookAuthentication.get_user_details(token)
 	user = AuthRepository().filter_attribute(models.User, {'email' : user_info['email']})

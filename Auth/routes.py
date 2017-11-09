@@ -29,7 +29,7 @@ def signin():
     return social_signin(request.args.get('provider'))
 
 @auth.route('/app/auth', methods=['GET'])
-def app_google():
+def app_auth():
     response = social_app_login(request)
     print response
     return respondWithItem(response, statusCode=200)

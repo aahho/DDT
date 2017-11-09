@@ -1,8 +1,9 @@
 from flask import redirect
 import oauth2 as oauth
-import urlparse
+import urlparse, requests
 from app import app
 import helpers, json
+from Exceptions.ExceptionHandler import DDTException
 
 def facebookDefaults():
 	default = {}
@@ -32,6 +33,7 @@ def authorize(request):
 		% (app.config['FACEBOOK_CLIENT_ID'], facebookDefaults()['user_redirect_uri'], \
 			app.config['FACEBOOK_CLIENT_SECRET'], request.args.get('code')) 
 	resp, content = client.request(request_url, 'GET')
+	print json.loads(content)
 	access_token = json.loads(content)['access_token']
 	# access_token = dict(urlparse.parse_qsl(content))['access_token']
 	request_url = 'https://graph.facebook.com/me?access_token=%s&scope=email&fields=id,name,email,picture' % access_token
@@ -46,7 +48,7 @@ def get_user_details(token):
     user_info = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', headers=headers)
     user_info = json.loads(user_info.content)
     if 'email' not in user_info:
-        raise DDTException("invalid google auth token")
+        raise DDTException("invalid facebook auth token")
     return create_user_data(user_info)
 
 def create_user_data(user_info):
