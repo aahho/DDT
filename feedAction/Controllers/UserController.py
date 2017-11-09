@@ -48,3 +48,10 @@ def article_list(user_id):
 	if user is not None:
 		return user.transformed_articles()
 	raise DDTException('Invalid User', 422)
+
+def archived_article_list(user_id):
+	user = UserRepository().get_user_by_id(user_id)
+	if user is not None:
+		return user.transformed_archived_articles()
+	raise DDTException('Invalid User', 422)
+	

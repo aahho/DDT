@@ -44,3 +44,9 @@ def remove_article_form_user(user_id, article_id):
 def list_of_save_article(user_id):
 	response = UserController.article_list(user_id)
 	return respondWithArray(response)
+
+@feed_action.route('/users/<user_id>/articles/archived', methods = ['GET'])
+@validate_jwt_token		
+def list_of_archived_article(user_id):
+	response = UserController.archived_article_list(user_id)
+	return respondWithArray(response)

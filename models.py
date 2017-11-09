@@ -38,6 +38,13 @@ class User(db.Model):
                 user_articles.append(article.transform())
         return user_articles
 
+    def transformed_archived_articles(self):
+        user_articles = []
+        for article in self.articles:
+            if article.deleted_at is not None:
+                user_articles.append(article.transform())
+        return user_articles
+
     def transform(self):
         return {
             'id' : self.id,

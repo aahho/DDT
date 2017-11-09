@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
+    <title>DuckDuckTech - Technology news aggregator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/usebootstrap.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/html5shiv.js"></script>
+      <script src="bootstrap/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="http://duckducktech.com" class="navbar-brand">
+            <img height="32px" src="static/img/logo.svg" alt="Logo">&nbsp; DuckDuckTech</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <!--    <ul class="nav navbar-nav">
+            <li>
+              <a href="#">Themes</a>
+            </li>
+      </ul> -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li><a href="http://usebootstrap.com/" target="_blank">Support</a></li> -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Menu <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+                            <li><a href="#" data-target="#signinModal" data-toggle="modal">Signup/Signin</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Download - Android</a></li>
+                            <li><a href="#" target="_blank">FAQ</a></li>
+                            <!-- <li><a href="#">Example 4</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="landing_one container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="col-md-12">
+                    <h1 class="welcome-header">Welcome to DuckDuckTech</h1>
+                    <h2 class="welcome-sub-header"> No <span>ugly duck</span> for you.</h2>
+                    <hr>
+                    <p>DDT is a fast, no-nonsense technology news aggregator for busy technologist. News is 99% built and curated by bots. PS: We are ad supported, till you updrage to pro.</p>
+                </div>
+
+                <div class="row price-tag">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class='pricing animated swing'>
+                              <div class='title'>
+                                  Basic Package
+                              </div>
+                              <div class='content'>
+                                  <div class='sub-title'>
+                                      Completly Free
+                                  </div>
+                                  <ul>
+                                      <li>
+                                          <div class='fa fa-check'></div>
+                                          Personalised feed based on tags of your choosing. Max 50 tags.
+                                         
+                                      </li>
+                                      <li>
+                                          <div class='fa fa-check'></div>
+                                          DDT curated and recommended new streams - new/hot/top
+                                      </li>
+                                      <li>
+                                          <div class='fa fa-check'></div>
+                                          Search by Title or URL
+                                      </li>
+                                      <li>
+                                          <div class='fa fa-close'></div>
+                                          No Adds
+                                      </li>
+                                      <li>
+                                          <div class='fa fa-close'></div>
+                                           Backup of your all saved articles
+                                      </li>
+                                      <li>
+                                          <div class='fa fa-close'></div>
+                                           Save stories for reading later on your mobile application (offline support). 
+                                      </li>
+                                  </ul>
+                                  <a class="btn btn-success"> Free to use</a>
+                              </div>
+                          </div>  
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <!-- <div class="col-md-2"></div> -->
+                      <div class="col-md-12">
+                        <div class='pricing animated swing'>
+                            <div class='title'>
+                                PRO Package
+                            </div>
+                            <div class='content'>
+                                <div class='sub-title'>
+                                    $11 <i>per year</i>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class='fa fa-check'></div>
+                                        Personalised feed based on tags of your choosing. Max 50 tags.
+                                    </li>
+                                    <li>
+                                        <div class='fa fa-check'></div>
+                                        DDT curated and recommended new streams - new/hot/top
+                                    </li>
+                                    <li>
+                                        <div class='fa fa-check'></div>
+                                        Search by Title or URL
+                                    </li>
+                                    <li>
+                                        <div class='fa fa-check'></div>
+                                       No Adds
+                                    </li>
+                                    <li>
+                                        <div class='fa fa-check'></div>
+                                       Backup of your all saved articles
+                                    </li>
+                                    <li>
+                                        <div class='fa fa-check'></div>
+                                        Save stories for reading later on your mobile application (offline support). 
+                                    </li>
+                                </ul>
+                                <a class="btn btn-info">Switch to Pro</a>
+                            </div>
+                        </div>  
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="static/img/mobileView.png" class="mt-60 mobileVeiwImg">
+            </div>
+        </div>
+        <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title" id="signinModalLabel">Get Started with DuckDuckTeck</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <p class="center modal-content-header">Please sign in to get pro account</p>
+                            <div class=" d-flex flex-row center justify-content-center py-2">
+                                <button type="button" class="btn btn-primary login-btn google-btn">
+                                    <img class="rounded-circle login-image" height="30" src="static/img/google-icon.png"> Sign in with Google
+                                </button>
+                            </div>
+
+                            <div class="d-flex flex-row center justify-content-center  py-2">
+                                <button type="button" class="btn btn-primary login-btn facebook-btn">
+                                    <img class="rounded-circle login-image" height="30" src="./img/facebook-icon.png"> Sign in with Facebook
+                                </button>
+                            </div>
+
+                            <div class="d-flex flex-row center justify-content-center py-2">
+                                <button type="button" class="btn btn-dark login-btn">
+                                    <img class="rounded-circle login-image" height="30" src="./img/github-icon.png"> Sign in with Github
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26826257-7"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-26826257-7');
+        </script>
+</body>
+
+</html>

@@ -5,5 +5,5 @@ base = Blueprint('base', __name__, template_folder='templates')
 
 @base.route('/')
 def index():
-	return render_template('404.html')
+	return render_template('index.html')
 
