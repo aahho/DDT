@@ -3,7 +3,6 @@ from datetime import datetime
 import models, helpers
 from models import db
 from  feedAction.UserRepository import UserRepository
-from feedAction.FeedRepository import FeedArticleRepository
 from Exceptions.ExceptionHandler import DDTException
 from feedAction.Controllers import FeedController
 
@@ -23,16 +22,13 @@ def save_article(user_id, article_id):
 			return True
 		except Exception as e:
 			db.session.rollback()
-			# user_article = models.UserArticle().query.filter(\
-			# models.UserArticle.user_id==user_id and modles.UserArticle.feed_article_id==article_id\
-			# ).first()
-			# print user_article.transform()
-			# print user_article.saved_at, '------'
-			# print user_article.id
-			# if user_article.deleted_at is not None:
-			# 	user_article.deleted_at = None
-			# 	db.session.commit()
-			# 	return True
+			user_article = models.UserArticle().query.filter(\
+			models.UserArticle.user_id==user_id, models.UserArticle.feed_article_id==article_id\
+			).first()
+			if user_article.deleted_at is not None:
+				user_article.deleted_at = None
+				db.session.commit()
+				return True
 			raise DDTException('Duplicate entry', 422)
 	raise DDTException('Invalid user or article id', 422)
 
@@ -40,7 +36,7 @@ def remove_article(user_id, article_id):
 	user = UserRepository().get_user_by_id(user_id)
 	if user is not None:
 		user_article = models.UserArticle().query.filter(\
-			models.UserArticle.user_id==user_id and modles.UserArticle.feed_article_id==article_id\
+			models.UserArticle.user_id==user_id, models.UserArticle.feed_article_id==article_id\
 			).first()
 		user_article.deleted_at=datetime.now()
 		db.session.commit()
