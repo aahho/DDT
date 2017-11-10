@@ -87,4 +87,5 @@ def create_user_data(user_info):
         'display_name' : user_info['email'].split('@')[0],
         'first_name' : user_info['name'].split(' ')[0],
         'last_name' : user_info['family_name'],
+        'logo' :  user_info['picture'] if 'picture' in user_info else None
     }

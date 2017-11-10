@@ -19,6 +19,7 @@ def create_user(data):
 		'email' : data['email'],
 		'password' : helpers.hash_password(data['password']), 
 		'display_name' : data['displayName'],
+		'logo' : data['logo'],
 		'is_password_change_required' : data['is_password_change_required']\
 			if 'is_password_change_required' in data else False
 	}
@@ -87,7 +88,8 @@ def google_login(token):
 			'displayName' : user_info['display_name'],
 			'firstName' : user_info['first_name'],
 			'last_Name' : user_info['last_name'],
-			'is_password_change_required' : False
+			'is_password_change_required' : False,
+			'logo' : user_info['logo']
 		}
 		user = create_user(data)
 	tokenRepo = UserTokenRepository()
@@ -113,7 +115,8 @@ def facebook_login(token):
 			'displayName' : user_info['display_name'],
 			'firstName' : user_info['first_name'],
 			'last_Name' : user_info['last_name'],
-			'is_password_change_required' : False
+			'is_password_change_required' : False,
+			'logo' : user_info['logo']
 		}
 		user = create_user(data)
 	tokenRepo = UserTokenRepository()
@@ -136,7 +139,8 @@ def github_login(token):
 			'displayName' : user_info['display_name'],
 			'firstName' : user_info['first_name'],
 			'last_Name' : user_info['last_name'],
-			'is_password_change_required' : False
+			'is_password_change_required' : False,
+			'logo' : user_info['logo']
 		}
 		user = create_user(data)
 	tokenRepo = UserTokenRepository()
@@ -159,7 +163,8 @@ def api_google_login(token):
 			'displayName' : user_info['display_name'],
 			'firstName' : user_info['first_name'],
 			'last_Name' : user_info['last_name'],
-			'is_password_change_required' : False
+			'is_password_change_required' : False,
+			'logo' : user_info['logo']
 		}
 		user = create_user(data)
 	tokenRepo = UserTokenRepository()

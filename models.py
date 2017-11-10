@@ -52,8 +52,9 @@ class User(db.Model):
             'email' : self.email,
             'isGod' : self.is_god,
             'isBanned' : self.is_banned,
+            'imageUrl' : self.logo,
             'isPremiumUser' : bool(self.is_premium_user),
-            'articles' : self.transformed_articles(),
+            # 'articles' : self.transformed_articles(),
             # 'lastLoginLocation' : self.last_login_location
         }
 
