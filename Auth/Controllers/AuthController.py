@@ -6,6 +6,7 @@ import helpers, datetime
 from Auth.AuthValidator import create_user_rule
 from wrapper import GoogleAuthentication
 from wrapper import FacebookAuthentication
+from wrapper import GithubAuthentication
 import AuthController
 import models
 
@@ -60,6 +61,9 @@ def google_redirect():
 def facebook_redirect():
 	return FacebookAuthentication.redirectTo()
 
+def github_redirect():
+	return GithubAuthentication.redirectTo()
+
 def social_app_login(request):
 	return getattr(AuthController, helpers.get_authrize_resolver(request.args.get('provider')))(request)
 
@@ -69,8 +73,10 @@ def google_authorize(request):
 def facebook_authorize(request):
 	return facebook_login(FacebookAuthentication.authorize(request))
 
+def github_authorize(request):
+	return github_login(GithubAuthentication.authorize(request))
+
 def google_login(token):
-	# GoogleAuthentication.authenticate_token(token)
 	user_info = GoogleAuthentication.get_user_details(token)
 	user = AuthRepository().filter_attribute(models.User, {'email' : user_info['email']})
 	if user is None:
@@ -97,9 +103,53 @@ def google_login(token):
  	#return social.redirect('user')
 
 def facebook_login(token):
-	# return
-	# GoogleAuthentication.authenticate_token(token)
 	user_info = FacebookAuthentication.get_user_details(token)
+	user = AuthRepository().filter_attribute(models.User, {'email' : user_info['email']})
+	if user is None:
+		data = {
+			'email' : user_info['email'],
+			'password' : None,
+			'rePassword' : None,
+			'displayName' : user_info['display_name'],
+			'firstName' : user_info['first_name'],
+			'last_Name' : user_info['last_name'],
+			'is_password_change_required' : False
+		}
+		user = create_user(data)
+	tokenRepo = UserTokenRepository()
+	user_token = helpers.access_token()
+	return tokenRepo.store(UserToken, 
+		{
+		'id' : helpers.generate_unique_code().__str__(),
+		'token' : user_token, 
+		'user_id' : user.id
+		})
+
+def github_login(token):
+	user_info = GithubAuthentication.get_user_details(token)
+	user = AuthRepository().filter_attribute(models.User, {'email' : user_info['email']})
+	if user is None:
+		data = {
+			'email' : user_info['email'],
+			'password' : None,
+			'rePassword' : None,
+			'displayName' : user_info['display_name'],
+			'firstName' : user_info['first_name'],
+			'last_Name' : user_info['last_name'],
+			'is_password_change_required' : False
+		}
+		user = create_user(data)
+	tokenRepo = UserTokenRepository()
+	user_token = helpers.access_token()
+	return tokenRepo.store(UserToken, 
+		{
+		'id' : helpers.generate_unique_code().__str__(),
+		'token' : user_token, 
+		'user_id' : user.id
+		})
+
+def api_google_login(token):
+	user_info = GoogleAuthentication.authenticate_token(token)
 	user = AuthRepository().filter_attribute(models.User, {'email' : user_info['email']})
 	if user is None:
 		data = {
