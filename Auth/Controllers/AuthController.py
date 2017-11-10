@@ -87,7 +87,7 @@ def google_login(token):
 			'rePassword' : None,
 			'displayName' : user_info['display_name'],
 			'firstName' : user_info['first_name'],
-			'last_Name' : user_info['last_name'],
+			'lastName' : user_info['last_name'],
 			'is_password_change_required' : False,
 			'logo' : user_info['logo']
 		}
@@ -114,7 +114,7 @@ def facebook_login(token):
 			'rePassword' : None,
 			'displayName' : user_info['display_name'],
 			'firstName' : user_info['first_name'],
-			'last_Name' : user_info['last_name'],
+			'lastName' : user_info['last_name'],
 			'is_password_change_required' : False,
 			'logo' : user_info['logo']
 		}

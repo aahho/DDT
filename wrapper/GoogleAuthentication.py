@@ -78,6 +78,7 @@ def get_user_details(token):
     return create_user_data(user_info)
 
 def create_user_data(user_info):
+    print user_info
     if 'verified_email' in user_info and bool(user_info['verified_email']) is not True:
         raise DDTException('Email is not verified')
     elif 'email_verified' in user_info and bool(user_info['email_verified']) is not True:

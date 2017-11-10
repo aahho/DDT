@@ -30,6 +30,7 @@ class User(db.Model):
     is_premium_user = db.Column(db.Boolean, server_default=text("false"))
 
     articles = relationship(u'UserArticle')
+    user_detail = relationship(u'UserDetail', uselist=False)
 
     def transformed_articles(self):
         user_articles = []
@@ -49,6 +50,8 @@ class User(db.Model):
         return {
             'id' : self.id,
             'displayName' : self.display_name,
+            'firstName' : self.user_detail.first_name,
+            'lastName' : self.user_detail.last_name,
             'email' : self.email,
             'isGod' : self.is_god,
             'isBanned' : self.is_banned,
