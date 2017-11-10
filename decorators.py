@@ -23,6 +23,7 @@ def api_login_required(func):
 			token = request.headers['access-token']
 			tokenObj = repo.check_valid_token(UserToken, token)
 			if hasattr(tokenObj, 'token'):
+				request.__setattr__('user', tokenObj.transform()['user'])
 			 	return func(*args, **kwargs)
 		raise DDTException('Unauthorized request', 401)
 	wraps.func_name = func.func_name
