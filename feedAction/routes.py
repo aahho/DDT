@@ -54,5 +54,5 @@ def list_of_archived_article(user_id):
 @feed_action.route('/feeds/keywords', methods = ['GET'])
 @validate_jwt_token		
 def kqywords():
-	response = keyword_list()
+	response = keyword_list(request)
 	return respondWithArray(response['data'])
