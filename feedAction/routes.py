@@ -50,3 +50,9 @@ def list_of_save_article(user_id):
 def list_of_archived_article(user_id):
 	response = UserController.archived_article_list(user_id)
 	return respondWithArray(response)
+
+@feed_action.route('/feeds/keywords', methods = ['GET'])
+@validate_jwt_token		
+def kqywords():
+	response = keyword_list()
+	return respondWithArray(response['data'])
