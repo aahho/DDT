@@ -91,7 +91,7 @@ get feedr url
 '''
 def get_feedr_url():
     if app.config['APP_ENV'] == 'production':
-        return "http://feedr.com"
+        return "http://139.59.4.41/"
     return "http://localhost:8000"
 
 '''
