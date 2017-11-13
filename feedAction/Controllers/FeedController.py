@@ -83,7 +83,9 @@ def category_list(request):
         raise DDTException('Something went worng', 422)
 
 def user_category_list(user_id):
-    return UserArticleCategory.query.filter(UserArticleCategory.user_id == user_id).all()
+    return UserArticleCategory.query.filter(\
+        UserArticleCategory.user_id == user_id ,\
+         UserArticleCategory.deleted_at == None).all()
 
 def get_category_by_id(id):
     server_url = helpers.get_feedr_url()+'/feeds/categories/'+ str(id)

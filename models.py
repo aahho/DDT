@@ -155,5 +155,4 @@ class UserArticleCategory(db.Model):
             'id' : self.category_id,
             'name' : self.category_name,
             'savedAt' : datetime_to_epoch(self.saved_at),
-            'deletedAt' : datetime_to_epoch(self.deleted_at) if self.deleted_at is not None else None
         } 
