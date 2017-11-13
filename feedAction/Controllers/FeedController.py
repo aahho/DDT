@@ -8,10 +8,12 @@ from Exceptions.ExceptionHandler import DDTException
 
 def filter_feed(request):
     type = request.args.get('type', None)
+    qstr = request.query_string
     if type:
         category_ids = get_user_category(request)
-    qstr = request.query_string
-    server_url = helpers.get_feedr_url()+'/feeds/articles/filter?'+qstr+'&category_id='+category_ids
+        server_url = helpers.get_feedr_url()+'/feeds/articles/filter?'+qstr+'&category_id='+category_ids
+    else :
+        server_url = helpers.get_feedr_url()+'/feeds/articles/filter?'+qstr
     headers = {
         "app-token" : app.config['FEEDR_ACCESS_CODE']
     }
