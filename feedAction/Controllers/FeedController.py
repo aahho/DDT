@@ -73,12 +73,12 @@ def category_list(request):
     }
     response = requests.get(server_url, headers=headers)
     if response.status_code == 200:
-        keys = response.json()['data']  
-        if request.args.get('q') is not None:
-            search_key = request.args.get('q')
-            matching = [key for key in keys if search_key.lower() in key.lower()]
-            return {'data' : matching}
-        return {'data' : keys}
+        return response.json() 
+        # if request.args.get('q') is not None:
+        #     search_key = request.args.get('q')
+        #     matching = [key for key in keys if search_key.lower() in key.lower()]
+        #     return {'data' : matching}
+        # return {'data' : keys}
     else : 
         raise DDTException('Something went worng', 422)
 
