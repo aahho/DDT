@@ -30,6 +30,7 @@ class User(db.Model):
     is_premium_user = db.Column(db.Boolean, server_default=text("false"))
 
     articles = relationship(u'UserArticle')
+    categories = relationship(u'UserArticleCategory')
     user_detail = relationship(u'UserDetail', uselist=False)
 
     def transformed_articles(self):
@@ -45,6 +46,12 @@ class User(db.Model):
             if article.deleted_at is not None:
                 user_articles.append(article.transform())
         return user_articles
+    
+    def category_list(self):
+        cat_list = []
+        for cat in self.categories:
+            cat_list.append(cat.transform())
+        return cat_list
 
     def transform(self):
         return {
@@ -126,3 +133,28 @@ class UserArticle(db.Model):
             'savedAt' : datetime_to_epoch(self.saved_at),
             'deletedAt' : datetime_to_epoch(self.deleted_at) if self.deleted_at is not None else None
         }
+
+class UserArticleCategory(db.Model):
+    """docstring for UserArticleCategory"""
+    __tablename__ = 'user_article_categories'
+
+    id = db.Column(db.String, primary_key=True)
+    user_id = db.Column(db.String, db.ForeignKey(u'users.id'))
+    category_id = db.Column(db.Integer)
+    category_name = db.Column(db.String)
+    saved_at = db.Column(db.DateTime, nullable=False, default=func.now())
+    deleted_at = db.Column(db.DateTime)
+
+    user = relationship("User", back_populates="categories")
+    __table_args__ = (
+        UniqueConstraint("user_id", "category_id"),
+    )
+
+    def transform(self):
+        return {
+            'id' : self.id,
+            'categoryId' : self.category_id,
+            'category' : self.category_name,
+            'savedAt' : datetime_to_epoch(self.saved_at),
+            'deletedAt' : datetime_to_epoch(self.deleted_at) if self.deleted_at is not None else None
+        } 

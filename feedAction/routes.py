@@ -43,6 +43,25 @@ def remove_article_form_user(article_id):
 		return respondOk('Removed Successfully')
 	return respondWithError('Failed to remove')
 
+@feed_action.route('/categories', methods = ['POST'])
+@validate_jwt_token	
+@api_login_required	
+def add_categories_from_user():	
+	user_id = request.user.get('id')
+	response = UserController.add_user_article_categories(request, user_id)
+	if response:
+		return respondOk('Added Successfully')
+
+@feed_action.route('/categories/remove', methods = ['DELETE'])
+@validate_jwt_token	
+@api_login_required	
+def remove_categories_froms_user():	
+	user_id = request.user.get('id')
+	response = UserController.remove_user_article_categories(request, user_id)
+	if response:
+		return respondOk('Removed Successfully')
+
+
 @feed_action.route('/articles', methods = ['GET'])
 @validate_jwt_token	
 @api_login_required	
@@ -63,4 +82,10 @@ def list_of_archived_article():
 @validate_jwt_token		
 def kqywords():
 	response = keyword_list(request)
+	return respondWithArray(response['data'])
+
+@feed_action.route('/feeds/categories', methods = ['GET'])
+@validate_jwt_token		
+def categories():
+	response = category_list(request)
 	return respondWithArray(response['data'])

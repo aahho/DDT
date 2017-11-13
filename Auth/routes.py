@@ -32,7 +32,6 @@ def signin():
 @auth.route('/app/auth', methods=['GET'])
 def app_auth():
     response = social_app_login(request)
-    print response
     return respondWithItem(response, statusCode=200)
     
 @auth.route('/app/logout', methods=['GET'])
