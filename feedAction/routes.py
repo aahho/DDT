@@ -88,4 +88,12 @@ def kqywords():
 @validate_jwt_token		
 def categories():
 	response = category_list(request)
-	return respondWithArray(response['data'])
+	return respondWithArray(response['data'])\
+
+@feed_action.route('/users/categories', methods = ['GET'])
+@validate_jwt_token		
+@api_login_required	
+def user_categories():
+	user_id = request.user.get('id')
+	response = user_category_list(user_id)
+	return respondWithCollection(response)
