@@ -83,7 +83,7 @@ get respective api server url
 '''
 def get_local_server_url():
     if app.config['APP_ENV'] == 'production':
-        return "http://duckducktech.com"
+        return "http://139.59.71.222"
     return "http://localhost:5000"
 
 '''

@@ -152,8 +152,8 @@ def github_login(token):
 		'user_id' : user.id
 		})
 
-def api_google_login(token):
-	user_info = GoogleAuthentication.authenticate_token(token)
+def api_google_login(token, device):
+	user_info = GoogleAuthentication.authenticate_token(token, device)
 	user = AuthRepository().filter_attribute(models.User, {'email' : user_info['email']})
 	if user is None:
 		data = {

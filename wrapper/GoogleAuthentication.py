@@ -10,10 +10,15 @@ from app import app
 # (Receive token by HTTPS POST)
 # ...
 
-def authenticate_token(token):
+def authenticate_token(token, device):
     try:
-        idinfo = id_token.verify_oauth2_token(token, google_requests.Request(), app.config['GOOGLE_CLIENT_ID'])
-
+        if device == 'web':
+            idinfo = id_token.verify_oauth2_token(token, google_requests.Request(), app.config['WEB_GOOGLE_CLIENT_ID'])
+        elif device == 'android' :
+            idinfo = id_token.verify_oauth2_token(token, google_requests.Request(), app.config['ANDROID_GOOGLE_CLIENT_ID'])
+        else :
+            idinfo = id_token.verify_oauth2_token(token, google_requests.Request(), app.config['IOS_GOOGLE_CLIENT_ID'])
+            
         # Or, if multiple clients access the backend server:
         # idinfo = id_token.verify_oauth2_token(token, requests.Request())
         # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:

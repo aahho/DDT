@@ -21,7 +21,8 @@ def login():
 @auth.route('/api/google', methods=['GET'])
 def google():
     token = request.args.get('token')
-    response = api_google_login(token)
+    device = request.args.get('device')
+    response = api_google_login(token, device)
     return respondWithItem(response, statusCode=200)
 
 @auth.route('/app/signin', methods=['GET'])
