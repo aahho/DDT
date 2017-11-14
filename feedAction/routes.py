@@ -52,14 +52,14 @@ def add_categories_from_user():
 	if response:
 		return respondOk('Added Successfully')
 
-@feed_action.route('/categories/remove', methods = ['DELETE'])
+@feed_action.route('/categories', methods = ['PUT'])
 @validate_jwt_token	
 @api_login_required	
-def remove_categories_froms_user():	
+def update_categories_froms_user():	
 	user_id = request.user.get('id')
-	response = UserController.remove_user_article_categories(request, user_id)
+	response = UserController.update_user_article_categories(request, user_id)
 	if response:
-		return respondOk('Removed Successfully')
+		return respondOk('Updated Successfully')
 
 
 @feed_action.route('/articles', methods = ['GET'])

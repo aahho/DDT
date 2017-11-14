@@ -65,14 +65,22 @@ def add_user_article_categories(request, user_id):
 				db.session.commit()
 	return True
 
-def remove_user_article_categories(request, user_id):
+def update_user_article_categories(request, user_id):
 	categories_id = request.json
+	models.UserArticleCategory().query.filter(\
+		models.UserArticleCategory.user_id==user_id).delete()
+	# db.session.delete(user_article_categories)
+	db.session.commit()
 	for cat_id in categories_id:
+		category = FeedController.get_category_by_id(cat_id).json()
 		try :
-			user_article_category = models.UserArticleCategory().query.filter(\
-				models.UserArticleCategory.user_id==user_id, models.UserArticleCategory.category_id==cat_id\
-				).first()
-			user_article_category.deleted_at=datetime.now()
+			user_article_category = models.UserArticleCategory(
+			id=helpers.generate_unique_code(),
+			category_name=category['data']['name'],
+			user_id=user_id,
+			category_id=category['data']['id']
+			)
+			db.session.add(user_article_category)
 			db.session.commit()
 		except :
 			raise DDTException('Something Went Worng')
