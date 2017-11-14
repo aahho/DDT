@@ -9,10 +9,12 @@ app.config.from_pyfile('env.py')
 db = SQLAlchemy(app)
 
 from Http.routes import base
+from notification.routes import notify
 from Auth.routes import auth
 from feedAction.routes import feed_action
 
 app.register_blueprint(base)
+app.register_blueprint(notify)
 app.register_blueprint(feed_action)
 app.register_blueprint(auth)
 

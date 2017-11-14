@@ -156,3 +156,20 @@ class UserArticleCategory(db.Model):
             'name' : self.category_name,
             'savedAt' : datetime_to_epoch(self.saved_at),
         } 
+
+class DeviceFcmToken(db.Model):
+    """docstring for DeviceFcmToken"""
+    __tablename__ = 'device_fcm_token'
+
+    id = db.Column(db.String, primary_key=True)
+    device = db.Column(db.String)
+    fcm_token = db.Column(db.String)
+    created_at = db.Column(db.DateTime, nullable=False, default=func.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=func.now(), onupdate=func.now())
+
+    def transform(self):
+        return {
+            'id' : self.category_id,
+            'device' : self.device,
+            'fcm_token' : self.fcm_token,
+        } 
