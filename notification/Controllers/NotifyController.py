@@ -30,7 +30,7 @@ def notify_device():
 	if letest_news.status_code == 200:
 		fcm_tokens = []
 		message_title = letest_news.json()['data']['title']
-		message_body = letest_news.json()['data']['summary'].split('.')[0]
+		message_body = letest_news.json()['data']['summary'].split('.')[0] if letest_news.json()['data']['summary'] is not None else "Latest news"
 		for data in fcm_data:
 			fcm_tokens.append(data.fcm_token)
 		notify = AppNotifyWrapper.notify_all(fcm_tokens, message_title, message_body)
