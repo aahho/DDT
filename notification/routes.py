@@ -16,5 +16,11 @@ def store_fcm():
 		return respondOk("token saved")
 	raise DDTException("Failed to save Token")
 
-
+@notify.route('/notify', methods=['GET'])
+@validate_jwt_token
+def notify_all():
+	response = notify_device()
+	if response:
+		return respondOk("notification send")
+	return respondWithError("Failed To send notification")
 
